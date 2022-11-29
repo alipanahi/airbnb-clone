@@ -75,6 +75,8 @@ cd airbnb-clone
 ```
 
 Add the *link to the trello* board in the **Readme** and the *DB schema* in the **database folder**.
+[Link to the Trelo Board](https://trello.com/b/EgxDIE5O/airbnb)
+
 
 Then push it to Github and add all the team-members as collaborators of the project.
 
