@@ -1,9 +1,10 @@
 
-export default function Home(props) {
-
+function Home() {
   return (
-    <>
-      <h1>Empty Next App</h1>
-    </>
+      <div>
+<h1>Home</h1>
+      </div>
   )
 }
+
+export default Home;
