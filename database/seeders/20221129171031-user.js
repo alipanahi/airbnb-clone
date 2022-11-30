@@ -4,21 +4,17 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
      await queryInterface.bulkInsert('Users', [{
-       name: 'Luca',
-       lastName: 'Lucai',
+       firstName: 'ali',
+       lastName: 'alizadeh',
+       email: 'ali@gmail.com',
+       password: '123123', // we have to hash or enc the password
        type: 'owner',
-       city_id: '1',
        createdAt: new Date(),
        updatedAt: new Date()
      }], {});
   },
 
   async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+    await queryInterface.bulkDelete('Users', null, {});
   }
 };
