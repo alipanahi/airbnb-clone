@@ -1,11 +1,8 @@
+import flatController from "../../../controllers/flatController";
 
-    
-  function FlatIndex() {
-    return (
-        <div>
-<h1>New</h1>
-        </div>
-    )
+export default async function handler(req, res) {
+  const { name, address } = req.body;
+  const flat = await flatController.create({ name, address });
+
+  res.status(200).redirect(`/flats/${flat.id}`);
 }
-
-export default New;
