@@ -14,7 +14,7 @@ function MainHeader(props) {
             </div>
 
             <div className={classes.navbtn}>
-                <Link href="/Sellers">Sellers  </Link>
+                <Link href="/sellers">Sellers  </Link>
             </div>
 
             <div className={classes.navbtn}>
