@@ -1,10 +1,11 @@
 import Link from 'next/link';
-import classes from './main-header.module.css';
+import 'bootstrap/dist/css/bootstrap.css'
+
 import { signIn, signOut } from "next-auth/react"
 
 function MainHeader(props) {
     return (
-        <header className={classes.navbar}>
+        <navbar className={classes.navbar}>
 
             <div className={classes.airbnbLogo}>
                 <Link href="/">Airbnb </Link>
@@ -14,11 +15,11 @@ function MainHeader(props) {
             </div>
 
             <div className={classes.navbtn}>
-                <Link href="/sellers">Sellers  </Link>
+                <Link href={ `/sellers` }>Sellers  </Link>
             </div>
 
             <div className={classes.navbtn}>
-                <Link href="/api/flats">Flats  </Link>
+                <Link href={ `/flats` }>Flats  </Link>
             </div>
 
 
@@ -34,20 +35,10 @@ function MainHeader(props) {
 
             <div>
                 <nav className={classes.navbar}>
-
-
-
-
-
-
-
-
-
                 </nav>
-
             </div>
 
-        </header>
+        </navbar>
     )
 }
 export default MainHeader;
