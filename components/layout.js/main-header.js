@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import classes from './main-header.module.css';
 import 'bootstrap/dist/css/bootstrap.css'
 
 import { signIn, signOut } from "next-auth/react"
