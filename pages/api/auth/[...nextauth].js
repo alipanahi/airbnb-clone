@@ -1,19 +1,20 @@
 import NextAuth from "next-auth"
-import GithubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import userController from "../../../controllers/userController";
 
 const authOptions = {
-    secret:'skdfjlsfjl',
     providers: [
-        GithubProvider({
-            clientId: process.env.GITHUB_ID,
-            clientSecret: process.env.GITHUB_SECRET,
-        }),
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+            authorization: {
+                params: {
+                  prompt: "consent",
+                  access_type: "offline",
+                  response_type: "code"
+                }
+              }
         }),
         CredentialsProvider({
             // The name to display on the sign in form (e.g. "Sign in with...")
@@ -28,7 +29,7 @@ const authOptions = {
             },
             async authorize(credentials, req) {
                 // Add logic here to look up the user from the credentials supplied
-                const [user,created] = await userController.findByEmail(credentials.email)
+                const user = await userController.authorize(credentials)
                 if (user) {
                     // Any object returned will be saved in `user` property of the JWT
                     return user
@@ -41,6 +42,6 @@ const authOptions = {
             }
         })
     ],
-    //secret: process.env.SECRET,//protects our connection
+    secret: process.env.SECRET,//protects our connection
 }
 export default NextAuth(authOptions)
