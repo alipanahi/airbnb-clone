@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import classes from './main-header.module.css';
+import { signIn, signOut } from "next-auth/react"
 
-function MainHeader() {
+function MainHeader(props) {
     return (
         <header className={classes.navbar}>
 
@@ -26,7 +27,8 @@ function MainHeader() {
             </div>
 
             <div className={classes.navbtn}>
-                <Link href="/login">Login  </Link>
+                {props.currentUser ? <button onClick={() => signOut()}>Sign out</button> : <button onClick={() => signIn()}>Sign in</button>}
+                
             </div>
 
 
