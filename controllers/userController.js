@@ -10,7 +10,8 @@ const userController = {
     return await db.User.findByPk(id)
   },
   findByEmail: async email =>{
-    return await db.User.findOrCreate({where:{email:email}})
+    const user = await db.User.findOrCreate({where:{email:email}})
+    return JSON.parse(JSON.stringify(user))
   }
 }
 
