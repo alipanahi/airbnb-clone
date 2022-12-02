@@ -32,7 +32,7 @@ export default function Home({flats}) {
                       <li>{ flat.category }</li>
                       <li>{ flat.rooms }</li>
                     </ul>
-                    <button type="button" class="w-100 btn btn-lg btn-outline-primary">Sign up for free</button>
+                    <Link href={`/flats/${flat.id}`}><button type="button" class="w-100 btn btn-lg btn-outline-primary">show</button></Link>
                   </div>
                 </div>
               </div>
