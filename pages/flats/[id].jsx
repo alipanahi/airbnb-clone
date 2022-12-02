@@ -1,21 +1,23 @@
 import React, { Component } from "react";
 import MainHeader from "../../components/layout.js/main-header";
 import flatController from "../../controllers/flatController";
+import "bootstrap/dist/css/bootstrap.css";
 
 export default function ShowPage({ flat }) {
   return (
-    <>
+    <div className="container py-3">
       <MainHeader />
-
-      <div className="container">
-        <h1>This is flats show file</h1>
-        <div className="row">
-          <h1>
-            {flat.name} {flat.address}
-          </h1>
+      <header>
+        <div class="pricing-header p-3 pb-md-4 mx-auto">
+          <h2 class="display-4 fw-normal">Name: {flat.name}</h2>
+          <h2 class="display-4 fw-normal">Address: {flat.address}</h2>
+          <h2 class="display-4 fw-normal">Booked: {flat.booked}</h2>
+          <h2 class="display-4 fw-normal">Price: {flat.price}</h2>
+          <h2 class="display-4 fw-normal">Category: {flat.category}</h2>
+          <h2 class="display-4 fw-normal">Rooms: {flat.rooms}</h2>
         </div>
-      </div>
-    </>
+      </header>
+    </div>
   );
 }
 
