@@ -2,6 +2,7 @@ import { getSession } from "next-auth/react"
 import MainHeader from "../components/layout.js/main-header"
 import userController from "../controllers/userController"
 
+
 export default function Home(props) {
   return (
     <>
