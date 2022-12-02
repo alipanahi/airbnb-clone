@@ -20,8 +20,10 @@ const flatController = {
       booked: data.booked,
       category: data.category,
       rooms: data.rooms,
+      UserId: data.userId,
     });
     const image = await db.Image.create({ path: data.imageUrl });
+
     flat.addImages(image);
 
     return JSON.parse(JSON.stringify(flat));
