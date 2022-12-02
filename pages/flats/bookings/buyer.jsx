@@ -1,11 +1,11 @@
 import { getSession } from "next-auth/react"
-import MainHeader from "../components/layout.js/main-header"
-import userController from "../controllers/userController"
-import flatController from '../controllers/flatController'
+import MainHeader from "../../../components/layout.js/main-header"
+import userController from "../../../controllers/userController"
+import flatController from '../../../controllers/flatController'
 import "bootstrap/dist/css/bootstrap.css";
 import React from "react";
 import Link from "next/link";
-import Flat from "../components/flat";
+import Flat from "../../../components/flat";
 
 export default function Home({ flats, currentUser }) {
   return (
@@ -35,11 +35,12 @@ export default function Home({ flats, currentUser }) {
 
 }
 export async function getServerSideProps(req, res) {
-  const flats = await flatController.all()
+  
   let currentUser = null
   const session = await getSession(req)
   if (session) {
     currentUser = await userController.findByEmail(session.user)
+    const flats = await flatController.buyerBookings(currentUser.id)
     return {
       props: { flats, currentUser },
     }
