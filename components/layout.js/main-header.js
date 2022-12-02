@@ -20,44 +20,96 @@ function MainHeader(props) {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link
-                className="nav-link active"
-                aria-current="page"
-                href={`/profile`}
-              >
-                Profile
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                className="nav-link active"
-                aria-current="page"
-                href={`/sellers`}
-              >
-                Sellers
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                className="nav-link active"
-                aria-current="page"
-                href={`/flats`}
-              >
-                Flats
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                className="nav-link active"
-                aria-current="page"
-                href={`/search`}
-              >
-                Search
-              </Link>
-            </li>
-          </ul>
+          
+            {props.currentUser ? (
+              props.currentUser.type==='owner' ? (
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active"
+                    aria-current="page"
+                    href={`/`}
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active"
+                    aria-current="page"
+                    href={`/flats`}
+                  >
+                    Flats
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active"
+                    aria-current="page"
+                    href={`/flats/bookings`}
+                  >
+                    Booked Flats
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active"
+                    aria-current="page"
+                    href={`/profile`}
+                  >
+                    Profile
+                  </Link>
+                </li>
+              </ul>
+              ) : (
+                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active"
+                    aria-current="page"
+                    href={`/`}
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active"
+                    aria-current="page"
+                    href={`/flats/bookings`}
+                  >
+                    My Bookings
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active"
+                    aria-current="page"
+                    href={`/profile`}
+                  >
+                    Profile
+                  </Link>
+                </li>
+                
+              </ul>
+              )
+            ) : (
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active"
+                    aria-current="page"
+                    href={`/`}
+                  >
+                    Home
+                  </Link>
+                </li>
+                
+              </ul>
+            )}
+            
+            
+            
           <div>
             {props.currentUser ? (
               <button
