@@ -33,6 +33,7 @@ const CreatePage = (props) => {
                 name="name"
                 placeholder="please enter the name"
               />
+              <input type="hidden" name="userId" value={props.currentUser.id} />
               <div class="invalid-feedback">Valid first name is required.</div>
             </div>
 
