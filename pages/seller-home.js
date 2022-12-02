@@ -4,9 +4,8 @@ import userController from "../controllers/userController"
 import flatController from '../controllers/flatController'
 import "bootstrap/dist/css/bootstrap.css";
 import React from "react";
-import Link from "next/link";
 import Flat from "../components/flat";
-import { useSession } from "next-auth/react"
+import Map from "../components/map";
 
 export default function Home({ flats, currentUser }) {
   return (
@@ -25,9 +24,7 @@ export default function Home({ flats, currentUser }) {
             )}
           </div>
 
-          <Link href={`/flats`}>
-            <h2 class="display-6 text-center mb-4">More...</h2>
-          </Link>
+          <Map/>
         </main>
       </header>
     </div>

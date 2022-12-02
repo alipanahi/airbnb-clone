@@ -1,8 +1,13 @@
 import db from "../database";
 
 const flatController = {
-  all: async () => {
-    const flats = await db.Flat.findAll();
+  all: async id => {
+    let flats = null
+    if(id){
+      flats = await db.Flat.findAll({where:{UserId:id}});
+    }else{
+      flats = await db.Flat.findAll();
+    }
     const parsedFlat = JSON.parse(JSON.stringify(flats));
     return parsedFlat;
   },

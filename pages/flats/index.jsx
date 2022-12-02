@@ -64,12 +64,14 @@ export default function IndexPage({ flats,currentUser }) {
 }
 
 export async function getServerSideProps(req, res) {
-  const flats = await flatController.all();
+  
   const session = await getSession(req)
   let currentUser = null
+  let flats = null
   if(session){
     
     currentUser = await userController.findByEmail(session.user)
+    flats = await flatController.all(currentUser.id);
     if(currentUser.type!=='owner'){
       return {
           redirect: {
