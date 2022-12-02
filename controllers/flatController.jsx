@@ -11,6 +11,11 @@ const flatController = {
     const flat = await db.Flat.create(data);
     return JSON.parse(JSON.stringify(flat));
   },
+  imageCreate: async (data) => {
+    console.log("image path fron control: ", data);
+    // const flat = await db.Image.create({ path: data });
+    // return JSON.parse(JSON.stringify(flat));
+  },
   show: async (id) => {
     console.log(id);
     const flat = await db.Flat.findByPk(id);
