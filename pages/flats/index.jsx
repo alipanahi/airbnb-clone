@@ -3,11 +3,13 @@ import MainHeader from "../../components/layout.js/main-header";
 import flatController from "../../controllers/flatController";
 import Link from "next/link";
 import "bootstrap/dist/css/bootstrap.css";
+import { getSession } from "next-auth/react"
+import userController from "../../controllers/userController";
 
-export default function IndexPage({ flats }) {
+export default function IndexPage({ flats,currentUser }) {
   return (
     <div className="container py-3">
-      <MainHeader />
+      <MainHeader currentUser={currentUser}/>
       <header>
         <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
           <h1 class="display-4 fw-normal">Flats</h1>
@@ -62,9 +64,34 @@ export default function IndexPage({ flats }) {
 }
 
 export async function getServerSideProps(req, res) {
-  const flats = await flatController.all();
-
+  
+  const session = await getSession(req)
+  let currentUser = null
+  let flats = null
+  if(session){
+    
+    currentUser = await userController.findByEmail(session.user)
+    flats = await flatController.all(currentUser.id);
+    if(currentUser.type!=='owner'){
+      return {
+          redirect: {
+          permanent: false,
+          destination: `/home`
+          }
+      }
+    }
+    
+  }else{
+    return {
+        redirect: {
+        permanent: false,
+        destination: `/home`
+        }
+    }
+  }
   return {
-    props: { flats },
+    props: { flats,currentUser },
   };
+
+  
 }

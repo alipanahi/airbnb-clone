@@ -4,7 +4,8 @@ import userController from "../controllers/userController"
 import flatController from '../controllers/flatController'
 import "bootstrap/dist/css/bootstrap.css";
 import React from "react";
-import Link from "next/link";
+import Flat from "../components/flat";
+import Map from "../components/map";
 
 export default function Home({ flats }) {
   return (
@@ -13,12 +14,13 @@ export default function Home({ flats }) {
       <header>
 
         <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-          <h1 class="display-4 fw-normal">Airbnb</h1>
+          <h1 class="display-4 fw-normal">Welcome to Airbnb</h1>
           <p class="fs-5 text-muted">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization.</p>
         </div>
 
         <main>
           <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+<<<<<<< HEAD
             {flats.map(flat =>
               <div key={flat.id} class="col">
                 <div class="card mb-4 rounded-3 shadow-sm">
@@ -37,12 +39,14 @@ export default function Home({ flats }) {
                   </div>
                 </div>
               </div>
+=======
+            { flats.map(flat => 
+              <Flat key={flat.id} flat={flat}/>
+>>>>>>> 9dace434d7279cdb14e6553e862cb313b34c2044
             )}
           </div>
 
-          <Link href={`/flats`}>
-            <h2 class="display-6 text-center mb-4">More...</h2>
-          </Link>
+          <Map />
         </main>
       </header>
     </div>

@@ -4,8 +4,8 @@ import userController from "../controllers/userController"
 import flatController from '../controllers/flatController'
 import "bootstrap/dist/css/bootstrap.css";
 import React from "react";
+import Link from "next/link";
 import Flat from "../components/flat";
-import Map from "../components/map";
 
 export default function Home({ flats, currentUser }) {
   return (
@@ -13,7 +13,7 @@ export default function Home({ flats, currentUser }) {
       <MainHeader currentUser={currentUser} />
       <header>
         <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-          <h1 class="display-4 fw-normal">Airbnb - Buyer</h1>
+          <h1 class="display-4 fw-normal">Airbnb - Seller Bookings</h1>
           <p class="fs-5 text-muted">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization.</p>
         </div>
 
@@ -24,7 +24,9 @@ export default function Home({ flats, currentUser }) {
             )}
           </div>
 
-          <Map/>
+          <Link href={`/flats`}>
+            <h2 class="display-6 text-center mb-4">More...</h2>
+          </Link>
         </main>
       </header>
     </div>
@@ -33,12 +35,11 @@ export default function Home({ flats, currentUser }) {
 
 }
 export async function getServerSideProps(req, res) {
-  
+  const flats = await flatController.all()
   let currentUser = null
   const session = await getSession(req)
   if (session) {
     currentUser = await userController.findByEmail(session.user)
-    const flats = await flatController.all()
     return {
       props: { flats, currentUser },
     }
@@ -53,4 +54,5 @@ export async function getServerSideProps(req, res) {
   }
 
 }
+
 
