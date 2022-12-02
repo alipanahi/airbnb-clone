@@ -1,11 +1,11 @@
 import db from "../database";
 
 const flatController = {
-  all: async id => {
-    let flats = null
-    if(id){
-      flats = await db.Flat.findAll({where:{UserId:id}});
-    }else{
+  all: async (id) => {
+    let flats = null;
+    if (id) {
+      flats = await db.Flat.findAll({ where: { UserId: id } });
+    } else {
       flats = await db.Flat.findAll();
     }
     const parsedFlat = JSON.parse(JSON.stringify(flats));
@@ -13,13 +13,18 @@ const flatController = {
   },
   create: async (data) => {
     console.log(data);
-    const flat = await db.Flat.create(data);
+    const flat = await db.Flat.create({
+      name: data.name,
+      address: data.address,
+      price: data.price,
+      booked: data.booked,
+      category: data.category,
+      rooms: data.rooms,
+    });
+    const image = await db.Image.create({ path: data.imageUrl });
+    flat.addImages(image);
+
     return JSON.parse(JSON.stringify(flat));
-  },
-  imageCreate: async (data) => {
-    console.log("image path fron control: ", data);
-    // const flat = await db.Image.create({ path: data });
-    // return JSON.parse(JSON.stringify(flat));
   },
   show: async (id) => {
     console.log(id);
