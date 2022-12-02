@@ -66,7 +66,7 @@ const CreatePage = (props) => {
               />
               <div class="invalid-feedback">Valid first name is required.</div>
             </div>
-
+            
             <div class="col-sm-6">
               <label for="booked" class="form-label">
                 Booked

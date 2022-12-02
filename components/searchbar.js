@@ -1,6 +1,11 @@
 import "bootstrap/dist/css/bootstrap.css";
-
+import { useState } from "react";
 function Searchbar(props) {
+  const [search,setSearch] = useState('')
+  const handleChange = event =>{
+    event.preventDefault()
+    setSearch(event.target.value)
+  }
   return (
     <div className="container">
           <br />
@@ -13,11 +18,11 @@ function Searchbar(props) {
                   </div>
 
                   <div className="col">
-                    <input className="form-control form-control-lg form-control-borderless" type="search" placeholder="Search destinations" />
+                    <input className="form-control form-control-lg form-control-borderless" onChange={handleChange}  type="search" placeholder="Search destinations" />
                   </div>
 
                   <div className="col-auto">
-                    <button className="btn btn-outline-primary" type="submit">Search</button>
+                    <button className="btn btn-outline-primary" type="button" onClick={()=>props.onClickHandler(search)}>Search</button>
                   </div>
 
                 </div>

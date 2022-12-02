@@ -47,7 +47,7 @@ function MainHeader(props) {
                   <Link
                     className="nav-link active"
                     aria-current="page"
-                    href={`/flats/bookings`}
+                    href={`/flats/bookings/seller`}
                   >
                     Booked Flats
                   </Link>
@@ -77,7 +77,7 @@ function MainHeader(props) {
                   <Link
                     className="nav-link active"
                     aria-current="page"
-                    href={`/flats/bookings`}
+                    href={`/flats/bookings/buyer`}
                   >
                     My Bookings
                   </Link>
