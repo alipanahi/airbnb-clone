@@ -1,10 +1,16 @@
+import flatController from "../../../controllers/flatController";
 
-  function FlatEdit() {
-    return (
-        <div>
-<h1>FlatEdit</h1>
-        </div>
-    )
+export default async function handler(req, res) {
+  const { id, name, address, price, booked, category, rooms } = req.body;
+  const flat = await flatController.update({
+    id,
+    name,
+    address,
+    price,
+    booked,
+    category,
+    rooms,
+  });
+
+  res.status(200).redirect(`/flats/${id}`);
 }
-
-export default FlatEdit;

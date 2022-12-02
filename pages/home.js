@@ -34,7 +34,7 @@ export default function Home({flats}) {
                       <li>{ flat.category }</li>
                       <li>{ flat.rooms }</li>
                     </ul>
-                    <button type="button" class="w-100 btn btn-lg btn-outline-primary">Book your Dream House</button>
+
                   </div>
                 </div>
               </div>

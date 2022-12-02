@@ -16,6 +16,16 @@ const flatController = {
     const flat = await db.Flat.findByPk(id);
     return JSON.parse(JSON.stringify(flat));
   },
+  update: async (data) => {
+    console.log(data);
+    const flat = await db.Flat.update(data, { where: { id: data.id } });
+    return JSON.parse(JSON.stringify(flat));
+  },
+  delete: async (id) => {
+    const flat = await db.Flat.findByPk(id);
+    flat.destroy({ where: { id: id } });
+    return JSON.parse(JSON.stringify(flat));
+  },
 };
 
 export default flatController;
