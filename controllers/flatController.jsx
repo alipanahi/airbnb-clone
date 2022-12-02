@@ -27,9 +27,15 @@ const flatController = {
     return JSON.parse(JSON.stringify(flat));
   },
   show: async (id) => {
-    console.log(id);
     const flat = await db.Flat.findByPk(id);
+
     return JSON.parse(JSON.stringify(flat));
+  },
+  getFlatImages: async (id) => {
+    const flat = await db.Flat.findByPk(id);
+    const images = await flat.getImages();
+
+    return JSON.parse(JSON.stringify(images));
   },
   update: async (data) => {
     console.log(data);
