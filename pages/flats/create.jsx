@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import MainHeader from "../../components/layout.js/main-header";
 import "bootstrap/dist/css/bootstrap.css";
+import { getSession } from "next-auth/react"
+import userController from "../../controllers/userController";
 
 const CreatePage = (props) => {
   return (
@@ -116,3 +118,32 @@ const CreatePage = (props) => {
 };
 
 export default CreatePage;
+export async function getServerSideProps(req, res) {
+  const session = await getSession(req)
+  let currentUser = null
+  if(session){
+    
+    currentUser = await userController.findByEmail(session.user)
+    if(currentUser.type!=='owner'){
+      return {
+          redirect: {
+          permanent: false,
+          destination: `/home`
+          }
+      }
+    }
+    
+  }else{
+    return {
+        redirect: {
+        permanent: false,
+        destination: `/home`
+        }
+    }
+  }
+  return {
+    props: { currentUser },
+  };
+
+  
+}
