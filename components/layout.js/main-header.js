@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { signIn, signOut } from "next-auth/react";
+import "bootstrap/dist/css/bootstrap.css";
 
 function MainHeader(props) {
   return (
@@ -20,9 +21,9 @@ function MainHeader(props) {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          
-            {props.currentUser ? (
-              props.currentUser.type==='owner' ? (
+
+          {props.currentUser ? (
+            props.currentUser.type === 'owner' ? (
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
                   <Link
@@ -61,8 +62,8 @@ function MainHeader(props) {
                   </Link>
                 </li>
               </ul>
-              ) : (
-                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            ) : (
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
                   <Link
                     className="nav-link active"
@@ -90,26 +91,27 @@ function MainHeader(props) {
                     Profile
                   </Link>
                 </li>
-                
+
               </ul>
-              )
-            ) : (
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li className="nav-item">
-                  <Link
-                    className="nav-link active"
-                    aria-current="page"
-                    href={`/`}
-                  >
-                    Home
-                  </Link>
-                </li>
-                
-              </ul>
-            )}
-            
-            
-            
+            )
+          ) : (
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  href={`/`}
+                >
+                  Home
+                </Link>
+              </li>
+
+            </ul>
+          )}
+
+          
+
+
           <div>
             {props.currentUser ? (
               <button
