@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import MainHeader from "../../../components/layout.js/main-header";
 import flatController from "../../../controllers/flatController";
 import "bootstrap/dist/css/bootstrap.css";
+import { getSession } from "next-auth/react"
+import userController from "../../../controllers/userController";
 
-const EditPage = ({ flat }) => {
+const EditPage = ({ flat,currentUser }) => {
   return (
     <div className="container py-3">
-      <MainHeader />
+      <MainHeader currentUser={currentUser}/>
       <header>
         <div className="pricing-header p-3 pb-md-4 mx-auto">
           <h1 className="display-4 fw-normal">Airbnb</h1>
@@ -21,7 +23,7 @@ const EditPage = ({ flat }) => {
         >
           <div className="row g-3">
             <div class="col-sm-6">
-              <label for="name" class="form-label">
+              <label htmlFor="name" class="form-label">
                 Name
               </label>
               <input
@@ -37,7 +39,7 @@ const EditPage = ({ flat }) => {
             </div>
 
             <div class="col-sm-6">
-              <label for="address" class="form-label">
+              <label htmlFor="address" class="form-label">
                 Address
               </label>
               <input
@@ -52,7 +54,7 @@ const EditPage = ({ flat }) => {
             </div>
 
             <div class="col-sm-6">
-              <label for="price" class="form-label">
+              <label htmlFor="price" class="form-label">
                 Price
               </label>
               <input
@@ -67,7 +69,7 @@ const EditPage = ({ flat }) => {
             </div>
 
             <div class="col-sm-6">
-              <label for="booked" class="form-label">
+              <label htmlFor="booked" class="form-label">
                 Booked
               </label>
               <select class="form-select" id="booked" name="booked" required="">
@@ -79,7 +81,7 @@ const EditPage = ({ flat }) => {
             </div>
 
             <div class="col-sm-6">
-              <label for="category" class="form-label">
+              <label htmlFor="category" class="form-label">
                 Category
               </label>
               <input
@@ -94,7 +96,7 @@ const EditPage = ({ flat }) => {
             </div>
 
             <div class="col-sm-6">
-              <label for="rooms" class="form-label">
+              <label htmlFor="rooms" class="form-label">
                 Rooms
               </label>
               <input
@@ -125,10 +127,32 @@ export default EditPage;
 export async function getServerSideProps(req, res) {
   const { id } = req.query;
   const flat = await flatController.show(id);
+  const session = await getSession(req)
+  let currentUser = null
+  if(session){
+    
+    currentUser = await userController.findByEmail(session.user)
+    if(currentUser.type!=='owner'){
+      return {
+          redirect: {
+          permanent: false,
+          destination: `/home`
+          }
+      }
+    }
+    
+  }else{
+    return {
+        redirect: {
+        permanent: false,
+        destination: `/home`
+        }
+    }
+  }
 
   return {
     props: {
-      flat,
+      flat,currentUser
     },
   };
 }
