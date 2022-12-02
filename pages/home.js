@@ -5,6 +5,8 @@ import flatController from '../controllers/flatController'
 import "bootstrap/dist/css/bootstrap.css";
 import React from "react";
 import Link from "next/link";
+import Map from "../components/map";
+
 
 export default function Home({flats}) {
   return (
@@ -32,7 +34,7 @@ export default function Home({flats}) {
                       <li>{ flat.category }</li>
                       <li>{ flat.rooms }</li>
                     </ul>
-                    <Link href={`/flats/${flat.id}`}><button type="button" class="w-100 btn btn-lg btn-outline-primary">show</button></Link>
+
                   </div>
                 </div>
               </div>
@@ -40,11 +42,19 @@ export default function Home({flats}) {
           </div>
 
           <Link href={`/flats`}>
+            <Map />
             <h2 class="display-6 text-center mb-4">More...</h2>
           </Link>
+         
         </main>
       </header>
+
+      
+
     </div>
+    
+
+
   )
 
 
