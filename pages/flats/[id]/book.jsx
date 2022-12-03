@@ -6,6 +6,7 @@ import { getSession } from "next-auth/react"
 import userController from "../../../controllers/userController";
 
 const Home = ({ flat, currentUser }) => {
+    
     return (
         <div className="container py-3">
             <MainHeader currentUser={currentUser} />
@@ -70,7 +71,14 @@ export async function getServerSideProps(req, res) {
     if (session) {
 
         currentUser = await userController.findByEmail(session.user)
-    }
+    }else {
+        return {
+          redirect: {
+            permanent: false,
+            destination: `/home`,
+          },
+        };
+      }
 
     return {
         props: {

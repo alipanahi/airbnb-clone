@@ -68,17 +68,7 @@ const EditPage = ({ flat,currentUser }) => {
               <div class="invalid-feedback">Valid first name is required.</div>
             </div>
 
-            <div class="col-sm-6">
-              <label htmlFor="booked" class="form-label">
-                Booked
-              </label>
-              <select class="form-select" id="booked" name="booked" required="">
-                <option value={flat.bookd}>{flat.bookd}</option>
-                <option value="true">Yes</option>
-                <option value="false">No</option>
-              </select>
-              <div class="invalid-feedback">Valid first name is required.</div>
-            </div>
+            <input type="hidden" name="booked" value={flat.booked}/>
 
             <div class="col-sm-6">
               <label htmlFor="category" class="form-label">

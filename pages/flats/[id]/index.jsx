@@ -10,7 +10,7 @@ import userController from "../../../controllers/userController";
 export default function ShowPage({ flat, images, currentUser }) {
   return (
     <div className="container py-3">
-      <MainHeader />
+      <MainHeader currentUser={currentUser}/>
       <header>
         <div class="pricing-header p-3 pb-md-4 mx-auto">
           <div class="card">
@@ -61,7 +61,6 @@ export default function ShowPage({ flat, images, currentUser }) {
               
             </div>
           </div>
-          {console.log(flat)}
         </div>
       </header>
     </div>
@@ -77,7 +76,6 @@ export async function getServerSideProps(req, res) {
   if (session) {
     currentUser = await userController.findByEmail(session.user)
   }
-  console.log(id, flat);
 
   return {
     props: {

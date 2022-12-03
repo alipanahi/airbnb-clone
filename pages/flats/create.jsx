@@ -8,7 +8,7 @@ import ImageUpload from "../../components/layout.js/ImageUpload";
 const CreatePage = (props) => {
   return (
     <div className="container py-3">
-      <MainHeader />
+      <MainHeader currentUser={props.currentUser}/>
       <header>
         <div className="pricing-header p-3 pb-md-4 mx-auto">
           <h1 className="display-4 fw-normal">Airbnb</h1>
@@ -66,19 +66,7 @@ const CreatePage = (props) => {
               />
               <div class="invalid-feedback">Valid first name is required.</div>
             </div>
-            
-            <div class="col-sm-6">
-              <label for="booked" class="form-label">
-                Booked
-              </label>
-              <select class="form-select" id="booked" name="booked" required="">
-                <option value="false">Choose...</option>
-                <option value="true">Yes</option>
-                <option value="false">No</option>
-              </select>
-              <div class="invalid-feedback">Valid first name is required.</div>
-            </div>
-
+            <input type="hidden" name="booked" value="false"/>
             <div class="col-sm-6">
               <label for="category" class="form-label">
                 Category
