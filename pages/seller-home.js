@@ -46,7 +46,7 @@ export default function Home({ flats, currentUser }) {
             )}
           </div>
 
-          <Map/>
+          <Map flats={allFlats}/>
         </main>
       </header>
     </div>

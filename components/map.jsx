@@ -1,17 +1,21 @@
 import React, {useRef, useEffect, useState} from 'react';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import styles from '../styles/Home.module.css'
+import Router from 'next/router'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZnJhaWRvbjgyIiwiYSI6ImNsYjZka3FwOTAwMzAzb21tZ3FkYTlvcXQifQ.SUHlwDjcQVZOPIsevWhYrA'
 
 
-export default function Map() {
+export default function Map({flats}) {
     const mapContainer = useRef(null);
     const map = useRef(null);
-    const [lng, setLng] = useState(9.15);
-    const [lat, setLat] = useState(45.46);
-    const [zoom, setZoom] = useState(12.5);
+    const [lng, setLng] = useState(12.4964);
+    const [lat, setLat] = useState(41.9028);
+    const [zoom, setZoom] = useState(5);
 
+    const handleClick = id=>{
+      Router.push(`flats/${id}`)
+    }
 
     useEffect(() => {
         if (map.current) return; // initialize map only once
@@ -27,16 +31,38 @@ export default function Map() {
 
       useEffect(() => {
         if (!map.current) return; // wait for map to initialize
-        map.current.on('move', () => {
-        setLng(map.current.getCenter().lng.toFixed(4));
-        setLat(map.current.getCenter().lat.toFixed(4));
-        setZoom(map.current.getZoom().toFixed(2));
-        });
+        
 
 
 
 
         map.current.on('load', () => { // when the map is loaded
+          if(flats){
+            flats.forEach(flat => {
+              let url = 'https://res.cloudinary.com/dc24zff14/image/upload/v1670164426/xstrgjeyl5jf73zxtgpo.jpg'
+              if(flat.Images){
+                url = flat.Images[0].path
+              }
+              // Create a DOM element for each marker.
+              const el = document.createElement('div');
+              const width = 50;
+              const height = 50;
+              el.className = 'marker';
+              el.style.backgroundImage = `url(${url})`;
+              el.style.width = `${width}px`;
+              el.style.height = `${height}px`;
+              el.style.backgroundSize = 'cover';
+              el.onclick = ()=>handleClick(flat.id);
+              
+              
+              if (flat.lon && flat.lat) {
+                new mapboxgl.Marker(el)
+                  .setLngLat([flat.lon, flat.lat])
+                  .addTo(map.current);
+              }
+            })
+         
+          }else{
             if (navigator.geolocation) {
                navigator.geolocation.getCurrentPosition((position) => {
                  map.current.flyTo({
@@ -47,6 +73,8 @@ export default function Map() {
              } else {
                console.log("Geolocation is not supported by this browser.")
              }
+
+          }
           })
         
         
