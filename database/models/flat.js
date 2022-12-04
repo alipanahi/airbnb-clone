@@ -23,6 +23,7 @@ const initFlat = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Flat',
+    paranoid: true
   });
   return Flat;
 };

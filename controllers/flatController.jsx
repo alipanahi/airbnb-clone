@@ -13,7 +13,6 @@ const flatController = {
     return parsedFlat;
   },
   create: async (data) => {
-    console.log(data);
     const flat = await db.Flat.create({
       name: data.name,
       address: data.address,
@@ -54,8 +53,8 @@ const flatController = {
     const flat = await db.Booking.create({
       FlatId: data.id,
       UserId: data.user_id,
-      date_from: data.from_date,
-      date_to: data.to_date,
+      date_from: new Date(data.from_date),
+      date_to: new Date(data.to_date),
       
     });
     await db.Flat.update({booked:true}, { where: { id: data.id } });
@@ -112,6 +111,69 @@ const flatController = {
     
     const parsedFlat = JSON.parse(JSON.stringify(flats));
     return parsedFlat;
+  },
+  checkDate: async (data) => {
+    const startBooking = new Date(data.from_date);
+    const endBooking = new Date(data.to_date);
+    const flats = await db.Booking.findOne({ 
+      where: {
+        [Op.and]: [
+          { 
+            FlatId: data.id
+          },
+          { 
+            [Op.or]: [
+              { 
+                [Op.and]: [
+                  { 
+                    date_from:{
+                      [Op.lte]: startBooking
+                    } 
+                  },
+                  { 
+                    date_to:{
+                      [Op.gte]: startBooking
+                    } 
+                  }
+                ] 
+              },
+              { 
+                [Op.and]: [
+                  { 
+                    date_from:{
+                      [Op.lte]: endBooking
+                    } 
+                  },
+                  { 
+                    date_to:{
+                      [Op.gte]: endBooking
+                    } 
+                  }
+                ] 
+              },
+              { 
+                [Op.and]: [
+                  { 
+                    date_from:{
+                      [Op.gte]: startBooking
+                    } 
+                  },
+                  { 
+                    date_to:{
+                      [Op.lte]: endBooking
+                    } 
+                  }
+                ] 
+              }
+            ]
+          }
+        ] 
+        
+      }
+    })
+    
+    //const parsedFlat = JSON.parse(JSON.stringify(flats));
+    return flats;
   },
 };
 
