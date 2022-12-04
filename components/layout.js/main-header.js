@@ -52,15 +52,7 @@ function MainHeader(props) {
                     Booked Flats
                   </Link>
                 </li>
-                <li className="nav-item">
-                  <Link
-                    className="nav-link active"
-                    aria-current="page"
-                    href={`/profile`}
-                  >
-                    Profile
-                  </Link>
-                </li>
+                
               </ul>
             ) : (
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
@@ -82,15 +74,7 @@ function MainHeader(props) {
                     My Bookings
                   </Link>
                 </li>
-                <li className="nav-item">
-                  <Link
-                    className="nav-link active"
-                    aria-current="page"
-                    href={`/profile`}
-                  >
-                    Profile
-                  </Link>
-                </li>
+                
 
               </ul>
             )

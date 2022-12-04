@@ -73,14 +73,19 @@ const flatController = {
   sellerBookings: async (id) => {
     
     const flats = await db.Flat.findAll({ 
-      include:{
-        model:db.Booking,
-        where:{
-          date_to:{
-            [Op.gt]:new Date()
+      include:[
+        {
+          model:db.Booking,
+          where:{
+            date_to:{
+              [Op.gt]:new Date()
+            }
           }
+        },
+        {
+          model:db.Image
         }
-      },
+      ],
       where:{
         UserId:id
       }
@@ -92,12 +97,17 @@ const flatController = {
   buyerBookings: async (id) => {
     
     const flats = await db.Flat.findAll({ 
-      include:{
-        model:db.Booking,
-        where:{
-          UserId:id
+      include:[
+        {
+          model:db.Booking,
+          where:{
+            UserId:id
+          }
+        },
+        {
+          model:db.Image
         }
-      }
+      ]
     })
     
     
@@ -108,6 +118,9 @@ const flatController = {
     let flats = null
     if(query){
       flats = await db.Flat.findAll({ 
+        include:{
+          model:db.Image
+        },
         where:{
           name:{
             [Op.like]: `%${query}%`
@@ -115,7 +128,11 @@ const flatController = {
         }
       })
     }else{
-      flats = await db.Flat.findAll()
+      flats = await db.Flat.findAll({
+        include:{
+          model:db.Image
+        }
+      })
     }
     
     

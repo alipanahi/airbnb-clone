@@ -2,8 +2,10 @@ import { useState } from "react";
 
 export default function ImageUpload() {
   const [url, setUrl] = useState("");
+  const [isLoading, setLoading] = useState(false)
 
   const handleChange = async (event) => {
+    setLoading(true)
     // setUrl(imageUrl);
     const file = event.target.files[0];
     const imageFormData = new FormData();
@@ -19,6 +21,7 @@ export default function ImageUpload() {
     );
     const response = await responseCloudinary.json();
     setUrl(response.secure_url);
+    setLoading(false)
   };
 
   return (
@@ -36,6 +39,7 @@ export default function ImageUpload() {
         accept=".jpg, .png, .jpeg"
       />
       <input hidden={true} defaultValue={url} id="imageUrl" name="imageUrl" />
+      {isLoading ? (<p style={{color: "red"}}>Uploading ... please wait!</p>) : (<p></p>)}
     </div>
   );
 }

@@ -25,22 +25,15 @@ export default function Map({flats}) {
           center: [lng, lat],
           zoom: zoom
         });
-      });
-
-
-
+      },[]);
       useEffect(() => {
         if (!map.current) return; // wait for map to initialize
-        
-
-
-
-
+       
         map.current.on('load', () => { // when the map is loaded
           if(flats){
             flats.forEach(flat => {
               let url = 'https://res.cloudinary.com/dc24zff14/image/upload/v1670164426/xstrgjeyl5jf73zxtgpo.jpg'
-              if(flat.Images){
+              if(flat.Images.length>0){
                 url = flat.Images[0].path
               }
               // Create a DOM element for each marker.
@@ -76,12 +69,7 @@ export default function Map({flats}) {
 
           }
           })
-        
-        
-    
-
-        
-        });
+        },[]);
 
 
       return (

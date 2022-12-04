@@ -24,9 +24,7 @@ export default function Home({ flats, currentUser }) {
             )}
           </div>
 
-          <Link href={`/flats`}>
-            <h2 class="display-6 text-center mb-4">More...</h2>
-          </Link>
+          
         </main>
       </header>
     </div>
