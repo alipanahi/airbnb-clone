@@ -15,6 +15,12 @@ module.exports = {
       address: {
         type: Sequelize.TEXT
       },
+      lon: {
+        type: Sequelize.FLOAT
+      },
+      lat: {
+        type: Sequelize.FLOAT
+      },
       price: {
         type: Sequelize.FLOAT
       },

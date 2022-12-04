@@ -16,6 +16,8 @@ const flatController = {
     const flat = await db.Flat.create({
       name: data.name,
       address: data.address,
+      lon: data.lon,
+      lan: data.lan,
       price: data.price,
       booked: data.booked,
       category: data.category,
