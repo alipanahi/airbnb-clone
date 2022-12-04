@@ -6,6 +6,8 @@ module.exports = {
     await queryInterface.bulkInsert('Flats', [{
       name: 'home',
       address: 'rome,italy',
+      lon:9.15,
+      lat:45.46,
       price: 100.40,
       booked: false,
       category: 'house',

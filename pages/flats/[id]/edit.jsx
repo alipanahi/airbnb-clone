@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component,useState } from "react";
 import MainHeader from "../../../components/layout.js/main-header";
 import flatController from "../../../controllers/flatController";
 import "bootstrap/dist/css/bootstrap.css";
@@ -6,6 +6,25 @@ import { getSession } from "next-auth/react"
 import userController from "../../../controllers/userController";
 
 const EditPage = ({ flat,currentUser }) => {
+  const [location, setLocation] = useState('')
+  const [lon, setLon] = useState(flat.lon)
+  const [lat, setLat] = useState(flat.lan)
+
+  const handleChange = async event => {
+    const token = 'pk.eyJ1IjoiZnJhaWRvbjgyIiwiYSI6ImNsYjZka3FwOTAwMzAzb21tZ3FkYTlvcXQifQ.SUHlwDjcQVZOPIsevWhYrA'
+    const address = event.target.value
+    const resp = await fetch(
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?access_token=${token}`,
+         { method: 'GET' })
+       const obj = await resp.json()
+       const place = obj.features[0].place_name
+       const [ lon, lat ] = obj.features[0].geometry.coordinates
+
+       setLocation(place)
+       setLon(lon)
+       setLat(lat)
+    
+  }
   return (
     <div className="container py-3">
       <MainHeader currentUser={currentUser}/>
@@ -49,8 +68,11 @@ const EditPage = ({ flat,currentUser }) => {
                 name="address"
                 placeholder="please enter the address"
                 defaultValue={flat.address}
+                onChange={handleChange}
               />
-              <div class="invalid-feedback">Valid first name is required.</div>
+              <div>{location}</div>
+              <input type="hidden" value={lon} name="lon"/>
+              <input type="hidden" value={lat} name="lat"/>
             </div>
 
             <div class="col-sm-6">

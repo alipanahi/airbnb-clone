@@ -14,6 +14,8 @@ const initFlat = (sequelize, DataTypes) => {
   Flat.init({
     name: DataTypes.STRING,
     address: DataTypes.TEXT,
+    lat: DataTypes.FLOAT,
+    lon: DataTypes.FLOAT,
     price: DataTypes.FLOAT,
     booked: DataTypes.BOOLEAN,
     category: DataTypes.STRING,
