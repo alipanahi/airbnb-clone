@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import React from "react";
 import Link from "next/link";
 import Flat from "../../../components/flat";
+import Map from "../../../components/map";
 
 export default function Home({ flats, currentUser }) {
   return (
@@ -19,14 +20,12 @@ export default function Home({ flats, currentUser }) {
 
         <main>
           <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-            {flats.map(flat =>
+            {flats.length>0 ? (flats.map(flat =>
               <Flat key={flat.id} flat={flat} />
-            )}
+            )) : (<p>No Flats</p>)}
           </div>
 
-          <Link href={`/flats`}>
-            <h2 class="display-6 text-center mb-4">More...</h2>
-          </Link>
+          <Map flats={flats}/>
         </main>
       </header>
     </div>

@@ -44,7 +44,7 @@ export default function Home({ flats }) {
           <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
             {isLoading ? (<p>Loading...</p>) : (
             allFlats.map(flat => 
-              <Flat key={flat.id} flat={flat}/>
+              <Flat key={flat.id} flat={flat} image={flat.Images.legth>0 ? flat.Images[0].path : ''}/>
             )
             )}
           </div>

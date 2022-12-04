@@ -11,14 +11,9 @@ import { useState,useEffect } from "react";
 
 
 export default function Home({ flats, currentUser }) {
-  const [search,setSearch] = useState('')
   const [allFlats,setAllFlats] = useState(flats)
   const [isLoading, setLoading] = useState(false)
   const handleClick = search=>{
-      setSearch(search)
-  }
-
-  useEffect(() => {
     setLoading(true)
     fetch('/api/flats/search',{
       method: "POST",
@@ -30,7 +25,9 @@ export default function Home({ flats, currentUser }) {
         setAllFlats(data.data)
         setLoading(false)
       })
-  }, [search])
+  }
+
+  
 
   return (
     <div className="container py-3">

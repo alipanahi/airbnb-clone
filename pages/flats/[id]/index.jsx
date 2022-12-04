@@ -21,7 +21,6 @@ export default function ShowPage({ flat, images, currentUser }) {
                 </a>
               </h2>
               <div class="mb-1 text-muted">{flat.createdAt}</div>
-              <p class="card-text mb-auto">
                 <table class="table">
                   <tbody>
                     <tr>
@@ -42,7 +41,6 @@ export default function ShowPage({ flat, images, currentUser }) {
                     </tr>
                   </tbody>
                 </table>
-              </p>
               {currentUser ? (
                 currentUser.type === "owner" ? (
                   <>
