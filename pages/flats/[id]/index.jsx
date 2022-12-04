@@ -81,7 +81,7 @@ export default function ShowPage({ flat, images, currentUser }) {
               //src="https://res.cloudinary.com/dc24zff14/image/upload/v1669991395/v8zz13i2ovoo8yk77zpg.jpg"
               src={
                 images[0]?.path ||
-                "https://res.cloudinary.com/dc24zff14/image/upload/v1669991395/v8zz13i2ovoo8yk77zpg.jpg"
+                "https://res.cloudinary.com/dc24zff14/image/upload/v1670164426/xstrgjeyl5jf73zxtgpo.jpg"
               }
               class="img-fluid"
               alt="flat image"

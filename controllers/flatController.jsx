@@ -5,9 +5,17 @@ const flatController = {
   all: async (id) => {
     let flats = null;
     if (id) {
-      flats = await db.Flat.findAll({ where: { UserId: id } });
+      flats = await db.Flat.findAll({
+        include:{
+          model:db.Image
+        },
+        where: { UserId: id } });
     } else {
-      flats = await db.Flat.findAll();
+      flats = await db.Flat.findAll({
+        include:{
+          model:db.Image
+        }
+    });
     }
     const parsedFlat = JSON.parse(JSON.stringify(flats));
     return parsedFlat;

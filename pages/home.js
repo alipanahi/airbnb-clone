@@ -49,7 +49,7 @@ export default function Home({ flats }) {
             )}
           </div>
 
-          <Map />
+          <Map flats={allFlats}/>
         </main>
       </header>
     </div>
