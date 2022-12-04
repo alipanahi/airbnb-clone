@@ -24,3 +24,36 @@ a {
     background: black;
   }
 }
+.search {
+  /* https: //images.unsplash.com/photo-1568941159284-3b299541ee63?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80 */
+  /* https://images.unsplash.com/photo-1568301235858-f41588681345?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80 */
+  background-image: url('https://images.unsplash.com/photo-1568941159284-3b299541ee63?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80');
+  width: 100%;
+  height: 250px;
+  background-position: center;
+  background-size: cover;
+  opacity: 0.7;
+  border-radius: 0 0 10px 10px;
+  margin-bottom: 10px;
+}
+
+.search-input {
+  padding-top: 10px;
+}
+
+.card-img {
+  background-position: center;
+  background-size: cover;
+  height: 225px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.card-title {
+  font-weight: bold;
+}
+
+.my-link {
+  text-decoration: none;
+  color: black
+}
