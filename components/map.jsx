@@ -14,7 +14,7 @@ export default function Map({flats}) {
     const [zoom, setZoom] = useState(5);
 
     const handleClick = id=>{
-      Router.push(`flats/${id}`)
+      Router.push(`/flats/${id}`)
     }
 
     useEffect(() => {
